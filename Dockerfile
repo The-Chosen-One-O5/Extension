@@ -6,6 +6,14 @@ WORKDIR /app
 # Install system dependencies including ffmpeg
 RUN apt-get update && apt-get install -y \
     ffmpeg \
+    pkg-config \
+    libavformat-dev \
+    libavcodec-dev \
+    libavdevice-dev \
+    libavutil-dev \
+    libswscale-dev \
+    libswresample-dev \
+    libavfilter-dev \
     libopus0 \
     libopus-dev \
     gcc \
