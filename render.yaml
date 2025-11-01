@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: telegram-voice-bot
+    env: docker
+    region: oregon
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: SESSION_STRING
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_BASE_URL
+        value: https://niansuh.net/api/v1/chat/completions
+      - key: MODEL_ID
+        value: zai-org/GLM-4.6
+      - key: PORT
+        value: 8080
+    healthCheckPath: /health
