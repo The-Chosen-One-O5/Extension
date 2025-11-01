@@ -1,6 +1,6 @@
 import logging
 import os
-from faster_whisper import WhisperModel
+import whisper
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -9,7 +9,7 @@ class STTHandler:
     def __init__(self):
         try:
             logger.info("Initializing Whisper model (base)...")
-            self.model = WhisperModel("base", device="cpu", compute_type="int8")
+            self.model = whisper.load_model("base")
             logger.info("Whisper model loaded successfully")
         except Exception as e:
             logger.error(f"Error loading Whisper model: {e}")
@@ -27,14 +27,12 @@ class STTHandler:
             
             logger.info(f"Transcribing audio file: {audio_file}")
             
-            segments, info = self.model.transcribe(
+            result = self.model.transcribe(
                 audio_file,
-                beam_size=5,
-                language="en",
-                vad_filter=True
+                language="en"
             )
             
-            transcribed_text = " ".join([segment.text for segment in segments])
+            transcribed_text = result["text"]
             
             if transcribed_text.strip():
                 logger.info(f"Transcription: {transcribed_text}")

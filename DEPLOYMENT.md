@@ -327,4 +327,4 @@ For issues and questions:
 - [pytgcalls Documentation](https://pytgcalls.github.io/)
 - [EdgeTTS Documentation](https://github.com/rany2/edge-tts)
 - [Render Documentation](https://render.com/docs)
-- [Whisper Documentation](https://github.com/SYSTRAN/faster-whisper)
+- [Whisper Documentation](https://github.com/openai/whisper)
