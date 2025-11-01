@@ -17,7 +17,7 @@ A Telegram userbot that can join voice calls and interact using AI with Text-to-
 - **Telethon**: Telegram userbot framework
 - **pytgcalls**: Voice call handling
 - **EdgeTTS**: Text-to-speech generation
-- **faster-whisper**: Speech-to-text transcription
+- **openai-whisper**: Speech-to-text transcription
 - **OpenAI Client**: AI response generation
 - **aiohttp**: Health check server
 - **Docker**: Containerization with ffmpeg

@@ -18,9 +18,8 @@
 - ✅ Audio file cleanup
 
 ### 3. Speech-to-Text (STT)
-- ✅ faster-whisper integration (fast and efficient)
+- ✅ openai-whisper integration (official OpenAI implementation)
 - ✅ Audio transcription from voice calls
-- ✅ Voice Activity Detection (VAD) filtering
 - ✅ Configurable model (base model for speed/accuracy balance)
 
 ### 4. AI Integration
@@ -114,7 +113,7 @@ telegram-voice-bot/
 | Bot Framework | Telethon | Telegram userbot |
 | Voice Calls | pytgcalls | Voice call handling |
 | TTS | EdgeTTS | Text-to-speech |
-| STT | faster-whisper | Speech-to-text |
+| STT | openai-whisper | Speech-to-text |
 | AI | OpenAI-compatible API | Conversational AI |
 | Web Server | aiohttp | Health check endpoint |
 | Container | Docker | Deployment |
