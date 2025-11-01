@@ -12,4 +12,6 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL")
 MODEL_ID = os.getenv("MODEL_ID")
 
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "gsk_free")
+
 HEALTH_CHECK_PORT = int(os.getenv("PORT", 8080))

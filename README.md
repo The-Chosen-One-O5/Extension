@@ -6,7 +6,7 @@ A Telegram userbot that can join voice calls and interact using AI with Text-to-
 
 - 🎤 **Voice Call Integration**: Join and manage Telegram voice calls
 - 🗣️ **Text-to-Speech**: Unlimited free TTS using EdgeTTS
-- 👂 **Speech-to-Text**: Fast transcription using Whisper
+- 👂 **Speech-to-Text**: Fast cloud-based transcription using Groq Whisper API
 - 🤖 **AI Responses**: Intelligent conversation using OpenAI-compatible API
 - 🐳 **Docker Ready**: Containerized with ffmpeg support
 - 💚 **Health Check**: Built-in health endpoint for UptimeRobot monitoring
@@ -17,7 +17,7 @@ A Telegram userbot that can join voice calls and interact using AI with Text-to-
 - **Telethon**: Telegram userbot framework
 - **pytgcalls**: Voice call handling
 - **EdgeTTS**: Text-to-speech generation
-- **openai-whisper**: Speech-to-text transcription
+- **Groq**: Cloud-based Whisper API for speech-to-text transcription
 - **OpenAI Client**: AI response generation
 - **aiohttp**: Health check server
 - **Docker**: Containerization with ffmpeg
@@ -47,6 +47,7 @@ SESSION_STRING=your_session_string
 OPENAI_API_KEY=your_openai_api_key
 OPENAI_BASE_URL=https://your-api-endpoint.com/v1/chat/completions
 MODEL_ID=your-model-id
+GROQ_API_KEY=gsk_free
 ```
 
 ### Local Development
@@ -107,7 +108,7 @@ main.py                 # Entry point, command handlers
 
 1. **Join Call**: Bot joins voice chat using pytgcalls
 2. **Listen**: Continuously listens to audio in the call
-3. **Transcribe**: Converts speech to text using Whisper
+3. **Transcribe**: Converts speech to text using Groq Whisper API (cloud-based)
 4. **Process**: Sends transcribed text to AI API
 5. **Generate Speech**: Converts AI response to audio using EdgeTTS
 6. **Speak**: Streams audio back to the voice call
@@ -136,8 +137,9 @@ self.voice = "en-US-JennyNeural"   # Female voice
 
 ### STT not working
 - Check that audio files are being captured
-- Ensure Whisper model downloaded successfully
+- Ensure Groq API key is set correctly (default: gsk_free)
 - Verify audio file format is supported
+- Check internet connectivity for API access
 
 ### Health check failing
 - Ensure port 8080 is exposed and accessible
@@ -146,10 +148,11 @@ self.voice = "en-US-JennyNeural"   # Female voice
 
 ## Performance Notes
 
-- **Whisper Model**: Uses `base` model for speed/accuracy balance
+- **Groq Whisper API**: Cloud-based transcription (no model loading, instant startup)
 - **AI Responses**: Limited to 150 tokens for faster responses
 - **Conversation History**: Keeps last 10 message pairs
 - **Audio Cleanup**: Automatically removes temporary audio files
+- **Low Memory**: Minimal memory footprint without local Whisper model
 
 ## License
 
