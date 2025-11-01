@@ -18,9 +18,10 @@
 - ✅ Audio file cleanup
 
 ### 3. Speech-to-Text (STT)
-- ✅ openai-whisper integration (official OpenAI implementation)
+- ✅ Groq Whisper API integration (cloud-based)
 - ✅ Audio transcription from voice calls
-- ✅ Configurable model (base model for speed/accuracy balance)
+- ✅ Fast transcription with no model loading
+- ✅ Low memory footprint
 
 ### 4. AI Integration
 - ✅ OpenAI-compatible API client
@@ -88,7 +89,7 @@ telegram-voice-bot/
 ├── voice_handler.py        # Voice call orchestration
 ├── ai_handler.py          # AI API integration
 ├── tts_handler.py         # EdgeTTS handler
-├── stt_handler.py         # Whisper STT handler
+├── stt_handler.py         # Groq Whisper STT handler
 ├── health_server.py       # Health check server
 ├── generate_session.py    # Session string generator
 ├── start.sh              # Startup script
@@ -113,7 +114,7 @@ telegram-voice-bot/
 | Bot Framework | Telethon | Telegram userbot |
 | Voice Calls | pytgcalls | Voice call handling |
 | TTS | EdgeTTS | Text-to-speech |
-| STT | openai-whisper | Speech-to-text |
+| STT | Groq Whisper API | Cloud-based speech-to-text |
 | AI | OpenAI-compatible API | Conversational AI |
 | Web Server | aiohttp | Health check endpoint |
 | Container | Docker | Deployment |
@@ -124,7 +125,7 @@ telegram-voice-bot/
 ### Conversation Flow
 1. User sends `/joincall` → Bot joins voice chat
 2. Bot listens to audio in real-time
-3. Audio transcribed to text via Whisper
+3. Audio transcribed to text via Groq Whisper API (cloud-based)
 4. Text processed by AI for response
 5. AI response converted to speech via EdgeTTS
 6. Audio streamed back to voice call
@@ -161,11 +162,12 @@ All sensitive data stored in environment variables:
 - `OPENAI_API_KEY` - AI API key
 - `OPENAI_BASE_URL` - AI API endpoint
 - `MODEL_ID` - AI model identifier
+- `GROQ_API_KEY` - Groq API key (default: gsk_free)
 - `PORT` - Health check server port (optional)
 
 ### Customizable Settings
 - TTS voice (default: en-US-AndrewNeural)
-- Whisper model (default: base)
+- Groq Whisper model (using: whisper-large-v3)
 - AI temperature (default: 0.7)
 - Max AI tokens (default: 150)
 - Conversation history (default: 10 pairs)
@@ -180,11 +182,12 @@ All sensitive data stored in environment variables:
 
 ## 📈 Performance
 
-- **Whisper Model**: base (balanced speed/accuracy)
+- **Groq Whisper API**: Cloud-based, no model loading (instant startup)
 - **AI Responses**: Limited to 150 tokens for speed
 - **Conversation**: Last 10 message pairs cached
 - **Cleanup**: Automatic temp file removal
-- **Memory**: Optimized for free tier hosting
+- **Memory**: Minimal footprint, optimized for free tier hosting
+- **Startup Time**: Instant (no heavy model downloads)
 
 ## 🧪 Testing
 

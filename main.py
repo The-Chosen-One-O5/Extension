@@ -150,7 +150,7 @@ async def main():
 /help - Show this help message
 
 **Features:**
-🎤 Speech-to-Text (Whisper)
+🎤 Speech-to-Text (Groq Whisper API)
 🔊 Text-to-Speech (EdgeTTS)
 🤖 AI Responses (OpenAI-compatible)
             """

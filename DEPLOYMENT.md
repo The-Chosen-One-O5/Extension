@@ -145,6 +145,7 @@ SESSION_STRING=your_session_string  # Generated Telethon session string
 OPENAI_API_KEY=your_api_key        # AI API key
 OPENAI_BASE_URL=https://your-api-endpoint.com/v1/chat/completions
 MODEL_ID=your-model-id             # AI model identifier
+GROQ_API_KEY=gsk_free              # Groq API key (free tier default)
 ```
 
 ### Optional Variables
@@ -235,10 +236,11 @@ View logs in Render dashboard
 **Symptoms:** Bot doesn't respond to speech
 
 **Solutions:**
-1. Ensure Whisper model downloaded successfully
-2. Check audio input format is supported
-3. Verify microphone permissions in group call
-4. Test with `/speak` command first
+1. Ensure Groq API key is set correctly (default: gsk_free)
+2. Check internet connectivity for API access
+3. Check audio input format is supported
+4. Verify microphone permissions in group call
+5. Test with `/speak` command first
 
 ### Health check failing
 
@@ -255,10 +257,10 @@ View logs in Render dashboard
 **Symptoms:** Bot crashes with OOM errors
 
 **Solutions:**
-1. Upgrade Render plan for more memory
-2. Use smaller Whisper model (tiny or base)
-3. Reduce conversation history limit
-4. Clean up temporary audio files more aggressively
+1. Upgrade Render plan for more memory (Note: Groq API significantly reduces memory usage)
+2. Reduce conversation history limit
+3. Clean up temporary audio files more aggressively
+4. Monitor memory usage in Render dashboard
 
 ### API rate limiting
 
@@ -299,7 +301,7 @@ Expected response: `OK` with status `200`
 
 ## Performance Tips
 
-1. **Use Whisper base model** for best speed/accuracy tradeoff
+1. **Groq Whisper API** provides fast cloud-based transcription with no model loading
 2. **Limit conversation history** to 10 messages to save memory
 3. **Clean up audio files** after use to save disk space
 4. **Use async operations** everywhere (already implemented)
@@ -327,4 +329,4 @@ For issues and questions:
 - [pytgcalls Documentation](https://pytgcalls.github.io/)
 - [EdgeTTS Documentation](https://github.com/rany2/edge-tts)
 - [Render Documentation](https://render.com/docs)
-- [Whisper Documentation](https://github.com/openai/whisper)
+- [Groq Documentation](https://console.groq.com/docs)

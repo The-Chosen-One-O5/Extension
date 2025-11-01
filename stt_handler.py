@@ -1,24 +1,25 @@
 import logging
 import os
-import whisper
+from groq import Groq
 from typing import Optional
+from config import GROQ_API_KEY
 
 logger = logging.getLogger(__name__)
 
 class STTHandler:
     def __init__(self):
         try:
-            logger.info("Initializing Whisper model (base)...")
-            self.model = whisper.load_model("base")
-            logger.info("Whisper model loaded successfully")
+            logger.info("Initializing Groq client for Whisper API...")
+            self.client = Groq(api_key=GROQ_API_KEY)
+            logger.info("Groq client initialized successfully")
         except Exception as e:
-            logger.error(f"Error loading Whisper model: {e}")
-            self.model = None
+            logger.error(f"Error initializing Groq client: {e}")
+            self.client = None
     
     async def transcribe_audio(self, audio_file: str) -> Optional[str]:
         try:
-            if not self.model:
-                logger.error("Whisper model not initialized")
+            if not self.client:
+                logger.error("Groq client not initialized")
                 return None
             
             if not os.path.exists(audio_file):
@@ -27,16 +28,19 @@ class STTHandler:
             
             logger.info(f"Transcribing audio file: {audio_file}")
             
-            result = self.model.transcribe(
-                audio_file,
-                language="en"
-            )
+            with open(audio_file, "rb") as file:
+                transcription = self.client.audio.transcriptions.create(
+                    file=(audio_file, file.read()),
+                    model="whisper-large-v3",
+                    response_format="text",
+                    language="en"
+                )
             
-            transcribed_text = result["text"]
+            transcribed_text = transcription.strip() if isinstance(transcription, str) else str(transcription).strip()
             
-            if transcribed_text.strip():
+            if transcribed_text:
                 logger.info(f"Transcription: {transcribed_text}")
-                return transcribed_text.strip()
+                return transcribed_text
             else:
                 logger.info("No speech detected in audio")
                 return None
@@ -46,4 +50,4 @@ class STTHandler:
             return None
     
     def is_ready(self) -> bool:
-        return self.model is not None
+        return self.client is not None

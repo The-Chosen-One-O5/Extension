@@ -113,9 +113,9 @@ health_server.py       # Health check server
 
 ### Medium Priority
 - Additional TTS voices and languages
-- Configurable Whisper models
 - Enhanced conversation context
 - Admin commands
+- Groq API key validation
 
 ### Nice to Have
 - Web dashboard for monitoring
